@@ -1,0 +1,60 @@
+<div class="product-list-container">
+  <header>
+    <h1>Liste des produits</h1>
+    <p class="subtitle">Découvrez notre sélection de produits de qualité</p>
+  </header>
+
+  <!-- Loading state -->
+  @if (loading()) {
+  <div class="loading-container">
+    <p>Chargement des produits...</p>
+  </div>
+  }
+
+  <!-- Error state -->
+  @if (error()) {
+  <div class="error-container">
+    <span class="error-icon">⚠️</span>
+    <p>{{ error() }}</p>
+    <button (click)="loadProducts()">Recharger</button>
+  </div>
+  }
+
+  <!-- Products list -->
+  @if (!loading() && !error() && products().length > 0) {
+  <div class="products-grid">
+    @for (product of products(); track product.id) {
+    <div class="product-card">
+      <div class="product-image">
+        <img [src]="product.image" [alt]="product.name" />
+        <div class="product-actions">
+          <button class="action-btn" title="Add to favorites">♡</button>
+          <button class="action-btn" title="Compare">⟷</button>
+        </div>
+      </div>
+      <div class="product-info">
+        <div class="product-category">{{ product.category }}</div>
+        <h3>{{ product.name }}</h3>
+        <p class="product-price">
+          {{ product.price | currency:'EUR':'symbol':'1.2-2' }}
+        </p>
+        <p class="product-description">{{ product.description }}</p>
+        <div class="product-actions-bottom">
+          <a [routerLink]="['/product', product.id]" class="view-details-btn"
+            >Voir le détail</a
+          >
+        </div>
+      </div>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Empty state -->
+  @if (!loading() && !error() && products().length === 0) {
+  <div class="empty-container">
+    <p>Aucun produit disponible pour le moment.</p>
+    <button class="refresh-btn" (click)="loadProducts()">Recharger</button>
+  </div>
+  }
+</div>

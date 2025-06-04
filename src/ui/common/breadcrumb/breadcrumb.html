@@ -1,0 +1,9 @@
+<div class="breadcrumb">
+  @for (item of items(); track item.label) { @if (item.link) {
+  <a [routerLink]="item.link">{{ item.label }}</a>
+  } @else {
+  <span [class.current]="item.current">{{ item.label }}</span>
+  } @if (!item.current) {
+  <span class="separator">›</span>
+  } }
+</div>

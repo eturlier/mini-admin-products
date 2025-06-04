@@ -1,0 +1,76 @@
+<div class="product-detail-container">
+  <app-breadcrumb [items]="breadcrumbItems"></app-breadcrumb>
+
+  <!-- Loading state -->
+  @if (loading()) {
+  <app-loading-state
+    message="Chargement des détails du produit..."
+  ></app-loading-state>
+  }
+
+  <!-- Error state -->
+  @if (error()) {
+  <div class="error-container">
+    <span class="error-icon">⚠️</span>
+    <p>{{ error()?.message }}</p>
+    <button (click)="loadProduct()">Retry</button>
+  </div>
+  }
+
+  <!-- Not found state -->
+  @if (notFound()) {
+  <div class="not-found-container">
+    <span class="not-found-icon">🔍</span>
+    <h2>Produit non trouvé</h2>
+    <p>Le produit que vous cherchez n'existe pas ou a été supprimé.</p>
+    <button class="back-btn" (click)="navigateToList()">Retour au catalogue</button>
+  </div>
+  }
+
+  <!-- Product detail -->
+  @if (!loading() && !error() && !notFound() && product()) {
+  <div class="product-detail">
+    <div class="back-link">
+      <button class="back-btn" (click)="navigateToList()">
+        Retour au catalogue
+      </button>
+    </div>
+
+    <div class="product-content">
+      <div class="product-image-column">
+        <div class="product-image-container">
+          <img [src]="product()?.image" [alt]="product()?.name" />
+        </div>
+        <div class="product-category-badge">{{ product()?.category }}</div>
+      </div>
+
+      <div class="product-info-column">
+        <h1 class="product-name">{{ product()?.name }}</h1>
+
+        <div class="product-price">
+          {{ product()?.price | currency:'EUR':'symbol':'1.2-2' }}
+        </div>
+
+        <div class="product-description-section">
+          <h2>Description</h2>
+          <p class="product-description">{{ product()?.description }}</p>
+        </div>
+
+        <div class="product-details-section">
+          <h2>Caractéristiques</h2>
+          <div class="product-details-grid">
+            <div class="detail-item">
+              <span class="detail-label">Catégorie</span>
+              <span class="detail-value">{{ product()?.category }}</span>
+            </div>
+            <div class="detail-item">
+              <span class="detail-label">Référence</span>
+              <span class="detail-value">{{ product()?.id }}</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  }
+</div>
