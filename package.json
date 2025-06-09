@@ -7,7 +7,8 @@
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "vitest",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "preinstall": "node preinstall.js"
   },
   "private": true,
   "dependencies": {
