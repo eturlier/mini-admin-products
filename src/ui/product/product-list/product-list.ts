@@ -1,8 +1,8 @@
 import { CommonModule } from '@angular/common';
 import { Component, inject, OnInit, signal } from '@angular/core';
+import { RouterModule } from '@angular/router';
 import { Product } from '@core/product/domain/product';
 import { GetProductsUseCase } from '@core/product/use-cases/get-products.use-case';
-import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-product-list',

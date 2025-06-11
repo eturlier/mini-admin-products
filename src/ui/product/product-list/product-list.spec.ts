@@ -1,10 +1,10 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { PRODUCT_GATEWAY } from '@core/product/gateways/product.gateway';
-import { MockProductGateway } from '@core/product/gateways/mock-product.gateway';
-import { GetProductsUseCase } from '@core/product/use-cases/get-products.use-case';
-import { Product } from '@core/product/domain/product';
 import { RouterModule } from '@angular/router';
-import { vi, describe, it, expect, beforeEach, afterEach, Mock } from 'vitest';
+import { Product } from '@core/product/domain/product';
+import { MockProductGateway } from '@core/product/gateways/mock-product.gateway';
+import { PRODUCT_GATEWAY } from '@core/product/gateways/product.gateway';
+import { GetProductsUseCase } from '@core/product/use-cases/get-products.use-case';
+import { afterEach, beforeEach, describe, expect, it, Mock, vi } from 'vitest';
 import { ProductList } from './product-list';
 
 describe('ProductList', () => {
