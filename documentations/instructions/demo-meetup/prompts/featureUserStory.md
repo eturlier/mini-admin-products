@@ -13,8 +13,7 @@ Rules:
 
 Requirements:
 <requirements>
-I want to be able to filter the list of products with one or more of the
-predefined categories and see the results in real time.
+[[Feature to build, be as detailed as possible]]
 </requirements>
 
 Steps:
