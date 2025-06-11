@@ -1,10 +1,8 @@
 # Description du projet
 
-Le projet consiste à développer une application web permettant d'afficher les produits d'une boutique en ligne.
+Le projet consiste à développer une application web permettant d'afficher les produits d'une boutique de vente en ligne de matériel tech (ordinateurs, smartphones, etc).
 
-## Contexte
-
-L'application permet de gérer les produits d'une boutique en ligne.
+L'application permet de gérer l'affichage des produits ainsi que leur détails.
 
 ## Objectifs
 
