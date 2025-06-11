@@ -1,4 +1,5 @@
 ---
+date: 2025-06-11 04:48:39
 date: 2025-06-11 09:18:27
 ---
 
@@ -249,4 +250,5 @@ L'application permet de gérer l'affichage des produits ainsi que leur détails.
 
 ```
 
+2025-06-11 04:48:39
 2025-06-11 09:18:27
