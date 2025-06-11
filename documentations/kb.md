@@ -1,5 +1,5 @@
 ---
-date: 2025-06-09 21:49:53
+date: 2025-06-11 09:18:27
 ---
 
 # Project Specifications "Knowledge Base"
@@ -12,11 +12,9 @@ It might not be update to date, always refer to code as source of truth.
 
 # Description du projet
 
-Le projet consiste à développer une application web permettant d'afficher les produits d'une boutique en ligne.
+Le projet consiste à développer une application web permettant d'afficher les produits d'une boutique de vente en ligne de matériel tech (ordinateurs, smartphones, etc).
 
-## Contexte
-
-L'application permet de gérer les produits d'une boutique en ligne.
+L'application permet de gérer l'affichage des produits ainsi que leur détails.
 
 ## Objectifs
 
@@ -33,30 +31,15 @@ L'application permet de gérer les produits d'une boutique en ligne.
 
 #### "Liste des produits"
 
-**En tant qu'** utilisateur
-**Je veux** voir la liste des produits
-**Afin de** pouvoir les consulter
-
-- Critères d'acceptation :
-  - [ ] Donné : que je suis sur la page de liste des produits
-  - [ ] Quand : je navigue vers la page de liste des produits
-  - [ ] Alors : la liste des produits est affichée
-  - [ ] Et : la liste des produits est mise à jour en temps réel
-  - [ ] Et : Chaque produit est affiché avec son image, sa catégorie, son nom, son prix et sa description
-  - [ ] Et : Chaque produit a un bouton cliquable qui mène vers la page de détails
+- En tant qu'utilisateur Je veux voir la liste des produits Afin de pouvoir les consulter
+- En tant qu'utilisateur Je veux que chaque produit soit affiché avec son image, sa catégorie, son nom, son prix et sa description
+- En tant qu'utilisateur Je veux que chaque produit a un bouton cliquable qui mène vers la page de détails
 
 #### "Détails d'un produit"
 
-**En tant qu'** utilisateur
-**Je veux** voir les détails d'un produit
-**Afin de** pouvoir les consulter
-
-- Critères d'acceptation :
-  - [ ] Donné : que je suis sur la page de liste des produits
-  - [ ] Quand : je clique sur un produit
-  - [ ] Alors : les détails du produit sont affichés
-  - [ ] Et : les détails du produit sont mis à jour en temps réel
-  - [ ] Et : les détails du produit sont affichés avec son image, son nom, son prix, sa description et usa reference
+- En tant qu'utilisateur Je veux voir les détails d'un produit Afin de pouvoir les consulter
+- En tant qu'utilisateur Je veux que chaque produit soit affiché avec son image, son nom, son prix, sa description et usa reference
+- En tant qu'utilisateur Je veux pouvoir revenir à la page de liste des produits
 
 # Choix initial des technologies
 
@@ -64,88 +47,63 @@ L'application permet de gérer les produits d'une boutique en ligne.
 
 - Node 22
 - TypeScript
-
-### Frontend
-
 - Angular 20
 
-### Backend
+### Paradigms
 
-- mocks
+- Clean Architecture → Organize the system into clear layers (application, domain, infrastructure). Maintain modularity to ensure scalability, use-case based!
+- Feature-Driven Development (FDD) → Categorize and structure features efficiently, ensuring that they remain self-contained and manageable.
+- Domain-Driven Design (DDD) → Focus on business-driven architecture using Entities, Aggregates, Value Objects, Repositories, and Services to enforce domain consistency.
+- Behavior-Driven Development (BDD) → When working on user stories, test files, or Gherkin scenarios, focus on real-world user behavior to drive system design.
+- SOLID Principles → Maintain single responsibility, modularity, and decoupling to ensure long-term maintainability and flexibility.
 
-# Conventional Commit guide
+# Architecture
 
-<https://github.com/BryanLomerio/conventional-commit-cheatsheet>
+## Application Structure
 
-Each commit message follows this structure:
+- **src/core/** - Contains business logic, framework-independent
 
-- **type**: Describes the change (e.g., `feat`, `fix`, `chore`)
-- **scope**: Optional. Refers to the area of the project being affected (e.g., `api`, `frontend`)
-- **description**: A short description of the change.
+  - **common/** - Shared elements and utilities
+  - **product/** - Product domain
+    - **domain/** - Entities and models
+    - **gateways/** - Interfaces for data access
+    - **use-cases/** - Specific use cases
 
----
+- **src/ui/** - Angular user interface
+  - **common/** - Reusable components
+  - **product/** - Product-specific components
 
-## 📋 Types of Commit
+## Mock System
 
-1. **feat**: A new feature for the user or system  
-   Example: `feat(auth): add Google login feature`
+- Data is mocked via `mock-product.gateway.ts`
+- No real backend, all data is in-memory
+- The system uses simulated delays to mimic API calls
 
-2. **fix**: A bug fix for the user or system  
-   Example: `fix(button): resolve issue with button hover state`
+## Data Flow
 
-3. **chore**: Routine tasks like maintenance or updating dependencies  
-   Example: `chore(deps): update react to version 17.0.2`
+1. UI component requests data via use-case
+2. Use-case uses the appropriate gateway
+3. Mock gateway returns static data
+4. Data is transformed if necessary
+5. UI displays the data
 
-4. **docs**: Documentation updates  
-   Example: `docs(readme): update installation instructions`
+## State Management
 
-5. **style**: Changes related to code style (e.g., formatting, missing semi-colons)  
-   Example: `style(button): fix button alignment in CSS`
+- RxJS for data flow management
+- No external state management library
+- Local state in components for filters
 
-6. **refactor**: Code change that neither fixes a bug nor adds a feature  
-   Example: `refactor(auth): simplify login form validation logic`
+## Main Entities
 
-7. **test**: Adding or updating tests  
-   Example: `test(auth): add unit tests for login function`
+### Product
 
-8. **build**: Changes that affect the build system or external dependencies  
-   Example: `build(webpack): add webpack config for production build`
+- Definition: `src/core/product/domain/product.ts`
+- Represents a product with its attributes (id, name, price, category, etc.)
 
-9. **ci**: Continuous integration-related changes  
-   Example: `ci(gitlab): update CI config for deployment pipeline`
+### Category
 
-10. **perf**: Code changes that improve performance
-    Example: `perf(api): optimize database queries for faster responses`
-
-11. **env**: Changes related to environment setup or configuration
-    Example: `env(docker): update Dockerfile for staging environment`
-
-12. **sec**: Security fixes or improvements
-    Example: `sec(auth): add encryption for user passwords`
-
-13. **config**: Changes to configuration files
-    Example: `config: update .eslint rules for stricter code checks`
-
-14. **api**: Updates to API contracts or integrations
-    Example: `api(user): add new endpoint for user profile updates`
-
-### Additional Commit Types
-
-**revert**: Reverts a previous commit
-
-Example: revert(auth): rollback Google login feature
-
-**merge**: Indicates a merge commit
-
-Example: merge: branch 'feature/auth' into 'main'
-
-**deps**: Dependency-specific updates
-
-Example: deps: bump axios from 0.21.1 to 0.24.0
-
-**design**: UI or UX improvements
-
-Example: design(button): update hover effect
+- Definition: `src/core/product/domain/category.ts`
+- Enum defining the different product categories available
 
 ## Additional Files
 
@@ -294,4 +252,4 @@ Example: design(button): update hover effect
 
 ```
 
-2025-06-09 21:49:53
+2025-06-11 09:18:27
