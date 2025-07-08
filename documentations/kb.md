@@ -1,5 +1,5 @@
 ---
-date: 2025-06-11 14:49:32
+date: 2025-07-08 21:37:00
 ---
 
 # Project Specifications "Knowledge Base"
@@ -59,7 +59,6 @@ L'application permet de gérer l'affichage des produits ainsi que leur détails.
 ## Application Structure
 
 - **src/core/** - Contains business logic, framework-independent
-
   - **common/** - Shared elements and utilities
   - **product/** - Product domain
     - **domain/** - Entities and models
@@ -186,6 +185,7 @@ L'application permet de gérer l'affichage des produits ainsi que leur détails.
 ./.windsurf/rules/07-quality-assurance/7-testing-frontend.mdc
 ./.windsurf/rules/07-quality-assurance/7-testing-standards.mdc
 ./angular.json
+./CLAUDE.md
 ./documentations
 ./eslint.config.js
 ./package-lock.json
@@ -249,4 +249,4 @@ L'application permet de gérer l'affichage des produits ainsi que leur détails.
 
 ```
 
-2025-06-11 14:49:32
+2025-07-08 21:37:00
