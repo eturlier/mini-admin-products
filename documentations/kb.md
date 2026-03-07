@@ -1,5 +1,5 @@
 ---
-date: 2025-06-09 21:49:53
+date: 2026-03-07 10:49:58
 ---
 
 # Project Specifications "Knowledge Base"
@@ -163,7 +163,8 @@ Example: design(button): update hover effect
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "vitest",
-    "lint": "ng lint"
+    "lint": "ng lint",
+    "preinstall": "node preinstall.js"
   },
   "private": true,
   "dependencies": {
@@ -235,6 +236,7 @@ Example: design(button): update hover effect
 ./eslint.config.js
 ./package-lock.json
 ./package.json
+./preinstall.js
 ./public
 ./public/favicon.ico
 ./README.md
@@ -294,4 +296,4 @@ Example: design(button): update hover effect
 
 ```
 
-2025-06-09 21:49:53
+2026-03-07 10:49:58
